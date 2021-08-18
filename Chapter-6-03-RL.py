@@ -16,7 +16,7 @@ import gym
 #outAct=tf.argmax(qVals,1)
 
 #P127 Figure 6.12 - Using expected discounted reward
-state=tf.placeholder(shape=[None,4],dtype=tfloat32)
+state=tf.placeholder(shape=[None,4],dtype=tf.float32)
 W=tf.Variable(tf.random_uniform([4,8],dtype=tf.float32))
 hidden=tf.nn.relu(tf.matmul(state,W))
 O=tf.Variable(tf.random_uniform([8,2],dtype=tf.float32))
@@ -35,7 +35,7 @@ v1Out=tf.nn.relu(tf.matmul(state,V1))
 V2=tf.Variable(tf.random_normal([8,1],dtype=tf.float32,stddev=.1))
 v2Out=tf.matmul(V1Out,V2)
 advantage=rewards-v2Out
-aLoss=-tf.reduce_mean(tf.log(actProbs)*advantage))
+aLoss=-tf.reduce_mean(tf.log(actProbs)*advantage)
 cLoss=tf.reduce_mean(tf.square(rewards-vOut))
 loss=aLoss+cLoss
 
