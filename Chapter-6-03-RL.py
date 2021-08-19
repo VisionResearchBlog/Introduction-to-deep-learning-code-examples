@@ -22,8 +22,8 @@ hidden=tf.nn.relu(tf.matmul(state,W))
 O=tf.Variable(tf.random_uniform([8,2],dtype=tf.float32))
 output=tf.nn.softmax(tf.matmul(hidden,0))
 
-rewards=tf.placeholder(shape=[None],dtype=tfloat32)
-actions=tf.placeholder(shape=[None],dtype=tfloat32)
+rewards=tf.placeholder(shape=[None],dtype=tf.float32)
+actions=tf.placeholder(shape=[None],dtype=tf.float32)
 indices=tf.range(0,tf.shape(output)[0])*2 + actions
 actProbs=tf.gather(tf.reshape(output, [-1]), indices)
 aloss=-tf.reduce_mean(tf.log(actProbs)*rewards)
